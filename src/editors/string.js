@@ -254,6 +254,21 @@ JSONEditor.defaults.editors.string = JSONEditor.AbstractEditor.extend({
     if(this.format) this.input.setAttribute('data-schemaformat',this.format);
 
     this.control = this.theme.getFormControl(this.label, this.input, this.description, this.infoButton);
+
+    // output element to display the range value when it changes or have default.
+    if(this.format === 'range') {
+      var output = document.createElement('output');
+      output.setAttribute('class', 'range-output');
+      this.control.appendChild(output);
+      output.value = this.schema.default;
+      this.input.addEventListener('change', function () {
+        output.value = self.input.value;
+      });
+      this.input.addEventListener('input', function () {
+        output.value = self.input.value;
+      });
+    }
+
     this.container.appendChild(this.control);
 
     // Any special formatting that needs to happen after the input is added to the dom
@@ -351,13 +366,12 @@ JSONEditor.defaults.editors.string = JSONEditor.AbstractEditor.extend({
         this.ace_editor = window.ace.edit(this.ace_container);
         
         this.ace_editor.setValue(this.getValue());
-        
+
         // The theme
         if(JSONEditor.plugins.ace.theme) this.ace_editor.setTheme('ace/theme/'+JSONEditor.plugins.ace.theme);
         // The mode
-        mode = window.ace.require("ace/mode/"+mode);
-        if(mode) this.ace_editor.getSession().setMode(new mode.Mode());
-        
+        this.ace_editor.getSession().setMode('ace/mode/' + this.schema.format);
+
         // Listen for changes
         this.ace_editor.on('change',function() {
           var val = self.ace_editor.getValue();
