@@ -12,6 +12,8 @@ It has full support for JSON Schema version 3 and 4 and can integrate with sever
 
 Check out an interactive demo (demo.html): https://json-editor.github.io/json-editor/
 
+
+
 Install
 -----------------
 
@@ -53,7 +55,7 @@ If you learn best by example, check these out:
 *  Advanced Usage Example - http://rawgithub.com/jdorn/json-editor/master/examples/advanced.html
 *  CSS Integration Example - http://rawgithub.com/jdorn/json-editor/master/examples/css_integration.html
 
-The rest of this README contains detailed documentation about every aspect of JSON Editor.  For more under-the-hood documentation, check the wiki.
+The rest of this README contains detailed documentation about every aspect of JSON Editor.  For more under-the-hood documentation, check the [wiki](https://github.com/json-editor/json-editor/wiki).
 
 ### Initialize
 
